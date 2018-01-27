@@ -1,0 +1,28 @@
+body {
+  background: #ff70c1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: none;
+  font-size: 60px;
+}
+
+.party {
+  z-index: 1000;
+}
+#avi-face {
+  width: 40vw;
+  z-index: 998;
+}
+
+#birthday-text {
+  z-index: 999;
+  position: absolute;
+  top: 20;
+  font-weight: bold;
+  font-family: 'helvetica';
+  color: white;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: black;
+}

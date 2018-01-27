@@ -1,0 +1,89 @@
+<!-- I see u looking at my shitty drunk source code 
+well I'll have you know I can think of several 
+better ways to do this and I did none of them -->
+<head>
+  <link rel="stylesheet" href="main.css"></link>
+  <meta property="og:title" content="happy birthday to boy!!!">
+  <meta property="og:image" content="pic.png">
+  <title>birth</title>
+</head>
+<script>
+  let imgIndex = 0
+  let numEmojis = 5
+  window.setInterval(()=>{
+    imgIndex++
+    imgIndex = imgIndex % 3
+    document.getElementById("avi-face").src = "avi-" + imgIndex + ".png"
+  }, 200)
+  
+  const getRandomOffset = (scale) => {
+    return Math.random() * scale
+  }
+  
+  let positions = []
+  
+  window.addEventListener("DOMContentLoaded", function() {
+    const numStars = 500
+    for (let i = 0; i < numStars; i++) {
+      let stars = []
+      const x = getRandomOffset(screen.width)
+      const star = {
+        x: x,
+        y: i * screen.height / numStars
+      }
+      let starElem = document.createElement("div")
+      let starContent = document.createTextNode("✨")
+      starElem.appendChild(starContent)
+      starElem.style.position = "absolute"
+      starElem.style.top = star.y
+      starElem.className = "star"
+      starElem.style.left = star.x
+      document.body.appendChild(starElem)
+      stars.push(starElem)
+      positions.push(star.x)
+    }
+  })
+  
+  window.setInterval(() => {
+    let moveAmount = 10
+    let stars = document.getElementsByClassName("star")
+    for (let i = 0; i < stars.length; i++) {
+      positions[i] += moveAmount
+      positions[i] = positions[i] % screen.width
+      stars[i].style.left = positions[i]
+    }
+  }, 100)
+  
+let counter = 0;
+  
+  window.setInterval(() => {
+    const cx = screen.width / 2 - 250;
+    const cy = screen.height / 2 - 40;
+    const radius = 200;
+    let txt = document.getElementById("birthday-text")
+    txt.style.left = Math.cos(counter) * radius + cx;
+    txt.style.top = Math.sin(counter) * radius + cy;
+    counter+=0.03;
+  }, 10)
+  
+  window.addEventListener("mousemove", (e) => {
+    let x = e.clientX
+    let y = e.clientY
+    let scale = 80
+    for (let i = 0; i < numEmojis; i++) {
+      let newDiv = document.createElement("div")
+      let newContent = document.createTextNode("🎉")
+      newDiv.appendChild(newContent)
+      newDiv.style.position = "absolute";
+      newDiv.style.top = y + getRandomOffset(scale);
+      newDiv.style.left = x + getRandomOffset(scale);
+      newDiv.className="party"
+      window.setInterval(() => {newDiv.remove();}, 100)
+      document.body.appendChild(newDiv)
+    }
+  })
+</script>
+<body>
+  <img id="avi-face" src="avi-0.png"/>
+  <div id="birthday-text">happy birthday</div>
+</body>
